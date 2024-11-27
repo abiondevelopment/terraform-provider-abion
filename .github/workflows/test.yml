@@ -60,7 +60,7 @@ jobs:
 
   # Run acceptance tests in sequence for each supported Terraform CLI versions
   test_1_0:
-    name: Terraform Provider Acceptance Tests
+    name: Terraform Provider Acceptance Tests v1.0.*
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -83,7 +83,7 @@ jobs:
         run: make testacc
         timeout-minutes: 20
   test_1_1:
-    name: Terraform Provider Acceptance Tests
+    name: Terraform Provider Acceptance Tests v1.1.*
     needs: test_1_0
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -106,7 +106,7 @@ jobs:
         run: make testacc
         timeout-minutes: 20
   test_1_2:
-    name: Terraform Provider Acceptance Tests
+    name: Terraform Provider Acceptance Tests v1.2.*
     needs: test_1_1
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -129,7 +129,7 @@ jobs:
         run: make testacc
         timeout-minutes: 20
   test_1_3:
-    name: Terraform Provider Acceptance Tests
+    name: Terraform Provider Acceptance Tests v1.3.*
     needs: test_1_2
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -152,7 +152,7 @@ jobs:
         run: make testacc
         timeout-minutes: 20
   test_1_4:
-    name: Terraform Provider Acceptance Tests
+    name: Terraform Provider Acceptance Tests v1.4.*
     needs: test_1_3
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -175,7 +175,7 @@ jobs:
         run: make testacc
         timeout-minutes: 20
   test_1_5:
-    name: Terraform Provider Acceptance Tests
+    name: Terraform Provider Acceptance Tests v1.5.*
     needs: test_1_4
     runs-on: ubuntu-latest
     timeout-minutes: 20
