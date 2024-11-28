@@ -18,11 +18,11 @@ func TestAccDnsPTRRecordDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_ptr_record" "test" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest6.com"
 			  name = "@"
 			  records = [
 				{
-				  ptr = "203.0.113.0.www.pmapitest.com."
+				  ptr = "203.0.113.0.www.pmapitest6.com."
 				  ttl = "3600"
 				  comments = "test comment"
 				}
@@ -36,11 +36,11 @@ func TestAccDnsPTRRecordDataSource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("data.abion_dns_ptr_record.test_data", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("data.abion_dns_ptr_record.test_data", "zone", "pmapitest6.com"),
 					resource.TestCheckResourceAttr("data.abion_dns_ptr_record.test_data", "name", "@"),
 					resource.TestCheckResourceAttr("data.abion_dns_ptr_record.test_data", "records.#", "1"),
 
-					resource.TestCheckResourceAttr("data.abion_dns_ptr_record.test_data", "records.0.ptr", "203.0.113.0.www.pmapitest.com."),
+					resource.TestCheckResourceAttr("data.abion_dns_ptr_record.test_data", "records.0.ptr", "203.0.113.0.www.pmapitest6.com."),
 					resource.TestCheckResourceAttr("data.abion_dns_ptr_record.test_data", "records.0.ttl", "3600"),
 					resource.TestCheckResourceAttr("data.abion_dns_ptr_record.test_data", "records.0.comments", "test comment"),
 				),
@@ -77,11 +77,11 @@ func TestAccDnsPTRRecordNoRecordOnSubDomainLevelDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_ptr_record" "test2" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest6.com"
 			  name = "@"
 			  records = [
 				{
-				  ptr = "203.0.113.0.www.pmapitest.com."
+				  ptr = "203.0.113.0.www.pmapitest6.com."
 				}
 			  ]
 			}
@@ -106,7 +106,7 @@ func TestAccDnsPTRRecordNoARecordOnSubDomainLevelDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_a_record" "test3" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest6.com"
 			  name = "test3"
 			  records = [
 				{

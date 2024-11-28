@@ -18,7 +18,7 @@ func TestAccDnsNSRecordDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_ns_record" "test" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest5.com"
 			  name = "www"
 			  records = [
 				{
@@ -36,7 +36,7 @@ func TestAccDnsNSRecordDataSource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("data.abion_dns_ns_record.test_data", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("data.abion_dns_ns_record.test_data", "zone", "pmapitest5.com"),
 					resource.TestCheckResourceAttr("data.abion_dns_ns_record.test_data", "name", "www"),
 					resource.TestCheckResourceAttr("data.abion_dns_ns_record.test_data", "records.#", "1"),
 
@@ -77,7 +77,7 @@ func TestAccDnsNSRecordNoNSRecordOnSubDomainLevelDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_a_record" "test3" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest5.com"
 			  name = "test3"
 			  records = [
 				{

@@ -18,24 +18,24 @@ func TestAccDnsSRVRecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_srv_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest7.com"
 			  name = "@"
 			  records = [
 				{
-				  target   = "server1.pmapitest.com."
+				  target   = "server1.pmapitest7.com."
 				  port     = "443"
 				  priority = "1"
 				  weight   = "100"
 				},
 				{
-				  target   = "server2.pmapitest.com."
+				  target   = "server2.pmapitest7.com."
 				  port     = "5103"
 				  priority = "100"
 				  weight   = "10"
 				  comments = "test comment"
 				},
 				{
-				  target   = "server3.pmapitest.com."
+				  target   = "server3.pmapitest7.com."
 				  port     = "443"
 				  priority = "100"
 				  weight   = "30"
@@ -46,25 +46,25 @@ func TestAccDnsSRVRecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "zone", "pmapitest7.com"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "name", "@"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.#", "3"),
 
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.target", "server1.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.target", "server1.pmapitest7.com."),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.port", "443"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.priority", "1"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.weight", "100"),
 					resource.TestCheckNoResourceAttr("abion_dns_srv_record.test", "records.0.ttl"),
 					resource.TestCheckNoResourceAttr("abion_dns_srv_record.test", "records.0.comments"),
 
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.target", "server2.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.target", "server2.pmapitest7.com."),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.port", "5103"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.priority", "100"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.weight", "10"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.comments", "test comment"),
 					resource.TestCheckNoResourceAttr("abion_dns_srv_record.test", "records.1.ttl"),
 
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.target", "server3.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.target", "server3.pmapitest7.com."),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.port", "443"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.priority", "100"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.weight", "30"),
@@ -76,23 +76,23 @@ func TestAccDnsSRVRecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_srv_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest7.com"
 			  name = "test"
 			  records = [
 				{
-				  target   = "server1.pmapitest.com."
+				  target   = "server1.pmapitest7.com."
 				  port     = "443"
 				  priority = "1"
 				  weight   = "100"
 				},
 				{
-				  target   = "server2.pmapitest.com."
+				  target   = "server2.pmapitest7.com."
 				  port     = "5103"
 				  priority = "100"
 				  weight   = "10"
 				},
 				{
-				  target   = "server3.pmapitest.com."
+				  target   = "server3.pmapitest7.com."
 				  port     = "443"
 				  priority = "100"
 				  weight   = "30"
@@ -102,25 +102,25 @@ func TestAccDnsSRVRecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "zone", "pmapitest7.com"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "name", "test"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.#", "3"),
 
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.target", "server1.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.target", "server1.pmapitest7.com."),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.port", "443"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.priority", "1"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.weight", "100"),
 					resource.TestCheckNoResourceAttr("abion_dns_srv_record.test", "records.0.ttl"),
 					resource.TestCheckNoResourceAttr("abion_dns_srv_record.test", "records.0.comments"),
 
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.target", "server2.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.target", "server2.pmapitest7.com."),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.port", "5103"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.priority", "100"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.weight", "10"),
 					resource.TestCheckNoResourceAttr("abion_dns_srv_record.test", "records.1.ttl"),
 					resource.TestCheckNoResourceAttr("abion_dns_srv_record.test", "records.1.comments"),
 
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.target", "server3.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.target", "server3.pmapitest7.com."),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.port", "443"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.priority", "100"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.2.weight", "30"),
@@ -133,17 +133,17 @@ func TestAccDnsSRVRecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_srv_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest7.com"
 			  name = "test"
 			  records = [
 				{
-				  target   = "server1.pmapitest.com."
+				  target   = "server1.pmapitest7.com."
 				  port     = "443"
 				  priority = "1"
 				  weight   = "100"
 				},
 				{
-				  target   = "server3.pmapitest.com."
+				  target   = "server3.pmapitest7.com."
 				  port     = "443"
 				  priority = "100"
 				  weight   = "30"
@@ -153,18 +153,18 @@ func TestAccDnsSRVRecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "zone", "pmapitest7.com"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "name", "test"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.#", "2"),
 
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.target", "server1.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.target", "server1.pmapitest7.com."),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.port", "443"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.priority", "1"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.0.weight", "100"),
 					resource.TestCheckNoResourceAttr("abion_dns_srv_record.test", "records.0.ttl"),
 					resource.TestCheckNoResourceAttr("abion_dns_srv_record.test", "records.0.comments"),
 
-					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.target", "server3.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.target", "server3.pmapitest7.com."),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.port", "443"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.priority", "100"),
 					resource.TestCheckResourceAttr("abion_dns_srv_record.test", "records.1.weight", "30"),
@@ -189,7 +189,7 @@ func TestAccDnsSRVRecordNonExistingZoneResource(t *testing.T) {
 			  name = "@"
 			  records = [
 				{
-				  target   = "server1.pmapitest.com."
+				  target   = "server1.pmapitest7.com."
 				  port     = "443"
 				  priority = "1"
 				  weight   = "100"

@@ -18,7 +18,7 @@ func TestAccDnsAAAARecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_aaaa_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest2.com"
 			  name = "@"
 			  records = [
 				{
@@ -37,7 +37,7 @@ func TestAccDnsAAAARecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "zone", "pmapitest2.com"),
 					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "name", "@"),
 					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "records.#", "3"),
 
@@ -58,7 +58,7 @@ func TestAccDnsAAAARecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_aaaa_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest2.com"
 			  name = "test"
 			  records = [
 				{
@@ -75,7 +75,7 @@ func TestAccDnsAAAARecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "zone", "pmapitest2.com"),
 					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "name", "test"),
 					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "records.#", "3"),
 
@@ -97,7 +97,7 @@ func TestAccDnsAAAARecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_aaaa_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest2.com"
 			  name = "test"
 			  records = [
 				{
@@ -111,7 +111,7 @@ func TestAccDnsAAAARecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "zone", "pmapitest2.com"),
 					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "name", "test"),
 					resource.TestCheckResourceAttr("abion_dns_aaaa_record.test", "records.#", "2"),
 

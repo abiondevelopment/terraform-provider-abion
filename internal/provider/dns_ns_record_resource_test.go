@@ -18,7 +18,7 @@ func TestAccDnsNSRecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_ns_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest5.com"
 			  name = "test"
 			  records = [
 				{
@@ -37,7 +37,7 @@ func TestAccDnsNSRecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_ns_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_ns_record.test", "zone", "pmapitest5.com"),
 					resource.TestCheckResourceAttr("abion_dns_ns_record.test", "name", "test"),
 					resource.TestCheckResourceAttr("abion_dns_ns_record.test", "records.#", "3"),
 
@@ -59,7 +59,7 @@ func TestAccDnsNSRecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_ns_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest5.com"
 			  name = "test"
 			  records = [
 				{
@@ -73,7 +73,7 @@ func TestAccDnsNSRecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_ns_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_ns_record.test", "zone", "pmapitest5.com"),
 					resource.TestCheckResourceAttr("abion_dns_ns_record.test", "name", "test"),
 					resource.TestCheckResourceAttr("abion_dns_ns_record.test", "records.#", "2"),
 

@@ -18,7 +18,7 @@ func TestAccDnsCNameRecordDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_cname_record" "test" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest3.com"
  			  name  = "@"
 			  record = {
 			    cname = "www.test.com."
@@ -34,7 +34,7 @@ func TestAccDnsCNameRecordDataSource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("data.abion_dns_cname_record.test_data", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("data.abion_dns_cname_record.test_data", "zone", "pmapitest3.com"),
 					resource.TestCheckResourceAttr("data.abion_dns_cname_record.test_data", "name", "@"),
 					resource.TestCheckResourceAttr("data.abion_dns_cname_record.test_data", "record.cname", "www.test.com."),
 					resource.TestCheckResourceAttr("data.abion_dns_cname_record.test_data", "record.ttl", "3600"),
@@ -73,7 +73,7 @@ func TestAccDnsCNameRecordNoRecordOnSubDomainLevelDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_cname_record" "test2" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest3.com"
 			  name = "@"
 			  record = {
 			  	cname = "www.test.com"
@@ -100,7 +100,7 @@ func TestAccDnsCNameRecordNoARecordOnSubDomainLevelDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_a_record" "test3" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest3.com"
 			  name = "test3"
 			  records = [
 				{

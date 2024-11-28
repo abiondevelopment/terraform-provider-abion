@@ -18,20 +18,20 @@ func TestAccDnsMXRecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_mx_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest4.com"
 			  name = "@"
 			  records = [
 				{
-				  host     = "mail1.pmapitest.com."
+				  host     = "mail1.pmapitest4.com."
 				  priority = "10"
 				},
 				{
-				  host     = "mail2.pmapitest.com."
+				  host     = "mail2.pmapitest4.com."
 				  priority = "20"
 				  comments = "test comment"
 				},
 				{
-				  host     = "mail3.pmapitest.com."
+				  host     = "mail3.pmapitest4.com."
 				  priority = "30"
 				  ttl      = "3600"
 				},
@@ -40,21 +40,21 @@ func TestAccDnsMXRecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "zone", "pmapitest4.com"),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "name", "@"),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.#", "3"),
 
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.0.host", "mail1.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.0.host", "mail1.pmapitest4.com."),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.0.priority", "10"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.0.ttl"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.0.comments"),
 
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.host", "mail2.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.host", "mail2.pmapitest4.com."),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.priority", "20"),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.comments", "test comment"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.1.ttl"),
 
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.2.host", "mail3.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.2.host", "mail3.pmapitest4.com."),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.2.priority", "30"),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.2.ttl", "3600"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.2.comments"),
@@ -64,19 +64,19 @@ func TestAccDnsMXRecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_mx_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest4.com"
 			  name = "test"
 			  records = [
 				{
-				  host     = "mail1.pmapitest.com."
+				  host     = "mail1.pmapitest4.com."
 				  priority = "10"
 				},
 				{
-				  host     = "mail2.pmapitest.com."
+				  host     = "mail2.pmapitest4.com."
 				  priority = "20"
 				},
 				{
-				  host     = "mail3.pmapitest.com."
+				  host     = "mail3.pmapitest4.com."
 				  priority = "30"
 				},
 			  ]
@@ -84,21 +84,21 @@ func TestAccDnsMXRecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "zone", "pmapitest4.com"),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "name", "test"),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.#", "3"),
 
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.0.host", "mail1.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.0.host", "mail1.pmapitest4.com."),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.0.priority", "10"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.0.ttl"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.0.comments"),
 
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.host", "mail2.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.host", "mail2.pmapitest4.com."),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.priority", "20"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.1.ttl"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.1.comments"),
 
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.2.host", "mail3.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.2.host", "mail3.pmapitest4.com."),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.2.priority", "30"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.2.comments"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.2.ttl"),
@@ -109,15 +109,15 @@ func TestAccDnsMXRecordResource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_mx_record" "test" {
-			  zone  = "pmapitest.com"
+			  zone  = "pmapitest4.com"
 			  name = "test"
 			  records = [
 				{
-				  host     = "mail1.pmapitest.com."
+				  host     = "mail1.pmapitest4.com."
 				  priority = "10"
 				},
 				{
-				  host     = "mail3.pmapitest.com."
+				  host     = "mail3.pmapitest4.com."
 				  priority = "30"
 				},
 			  ]
@@ -125,16 +125,16 @@ func TestAccDnsMXRecordResource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "zone", "pmapitest4.com"),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "name", "test"),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.#", "2"),
 
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.0.host", "mail1.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.0.host", "mail1.pmapitest4.com."),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.0.priority", "10"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.0.comments"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.0.ttl"),
 
-					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.host", "mail3.pmapitest.com."),
+					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.host", "mail3.pmapitest4.com."),
 					resource.TestCheckResourceAttr("abion_dns_mx_record.test", "records.1.priority", "30"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.1.ttl"),
 					resource.TestCheckNoResourceAttr("abion_dns_mx_record.test", "records.1.comments"),
@@ -157,7 +157,7 @@ func TestAccDnsMXRecordNonExistingZoneResource(t *testing.T) {
 			  name = "@"
 			  records = [
 				{
-				  host     = "mail1.pmapitest.com."
+				  host     = "mail1.pmapitest4.com."
 				  priority = "10"
 				},
 			  ]

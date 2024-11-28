@@ -18,11 +18,11 @@ func TestAccDnsSRVRecordDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_srv_record" "test" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest7.com"
 			  name = "@"
 			  records = [
 				{
-				  target   = "server1.pmapitest.com."
+				  target   = "server1.pmapitest7.com."
 				  port     = "443"
 				  priority = "1"
 				  weight   = "100"
@@ -39,11 +39,11 @@ func TestAccDnsSRVRecordDataSource(t *testing.T) {
 			`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify
-					resource.TestCheckResourceAttr("data.abion_dns_srv_record.test_data", "zone", "pmapitest.com"),
+					resource.TestCheckResourceAttr("data.abion_dns_srv_record.test_data", "zone", "pmapitest7.com"),
 					resource.TestCheckResourceAttr("data.abion_dns_srv_record.test_data", "name", "@"),
 					resource.TestCheckResourceAttr("data.abion_dns_srv_record.test_data", "records.#", "1"),
 
-					resource.TestCheckResourceAttr("data.abion_dns_srv_record.test_data", "records.0.target", "server1.pmapitest.com."),
+					resource.TestCheckResourceAttr("data.abion_dns_srv_record.test_data", "records.0.target", "server1.pmapitest7.com."),
 					resource.TestCheckResourceAttr("data.abion_dns_srv_record.test_data", "records.0.port", "443"),
 					resource.TestCheckResourceAttr("data.abion_dns_srv_record.test_data", "records.0.priority", "1"),
 					resource.TestCheckResourceAttr("data.abion_dns_srv_record.test_data", "records.0.weight", "100"),
@@ -83,11 +83,11 @@ func TestAccDnsSRVRecordNoRecordOnSubDomainLevelDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_srv_record" "test2" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest7.com"
 			  name = "@"
 			  records = [
 				{
-				  target   = "server1.pmapitest.com."
+				  target   = "server1.pmapitest7.com."
 				  port     = "443"
 				  priority = "1"
 				  weight   = "100"
@@ -115,7 +115,7 @@ func TestAccDnsSRVRecordNoARecordOnSubDomainLevelDataSource(t *testing.T) {
 			{
 				Config: providerConfig + `
 			resource "abion_dns_aaaa_record" "test3" {
- 			  zone  = "pmapitest.com"
+ 			  zone  = "pmapitest7.com"
 			  name = "test3"
 			  records = [
 				{
