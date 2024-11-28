@@ -1,0 +1,2 @@
+# DNS SRV records can be imported by specifying the string identifier. The import ID should be in the format: "zone/name". The `@` character represents the root of the zone, E.g., "example.com/@"
+terraform import abion_dns_srv_record.example "example.com/www"
