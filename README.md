@@ -1,6 +1,9 @@
 # Terraform Provider: Abion
 
-The Abion provider supports resources that performs DNS updates and data sources via the Abion API.  
+The Terraform Abion Provider supports resources that performs DNS record updates and data sources for DNS records via the Abion API.
+You **must** have an Abion account to retrieve an API key. Contact [Abion](https://abion.com/) for help how to create an account and API key. To access 
+the Abion API you also need to get your IP addresses whitelisted by Abion. The Terraform Abion Provider operates on record level so the actual zone
+must exist and the API Key/account need to have access to the zone.  
 
 ## Requirements
 
@@ -9,34 +12,52 @@ The Abion provider supports resources that performs DNS updates and data sources
 * [GNU Make](https://www.gnu.org/software/make/)
 * [golangci-lint](https://golangci-lint.run/usage/install/#local-installation) (optional)
 
+## Limitations
+
+* You are only allowed to make 100 updates of a zone per day. 
+* The zone must exist (and managed by Abion) and the API Key/account needs access to the zone. 
+* The supported record types: 
+  * `A`
+  * `AAAA`
+  * `CNAME`
+  * `MX`
+  * `TXT`
+  * `NS`
+  * `SRV` 
+  * `PTR`
+
+
 ## Using the provider
 
 Official documentation on how to use this provider can be found on the
 [Terraform Registry](https://registry.terraform.io/providers/abion/abion/latest/docs).
 
 ## Developing the Abion Provider
-The provided `GNUmakefile` defines commands generally useful during development,
-like for trigger a Golang build and install the Abion Provider, running acceptance tests, generating documentation, code formatting and linting.
+
+The provided `GNUmakefile` defines commands generally useful during development, like for trigger a Golang build and install the Abion Provider, 
+running acceptance tests, generating documentation, code formatting and linting.
 
 `git clone` this repository and `cd` into its directory
+
+The default `make` command will execute linting, formatting, generate docs, build and install the Abion provider
 ```shell
 make 
 ```
-will run linting, formatting, generate docs build and install the provider
 
 ### Building
+
+The `make install` target will trigger the Golang build and install the provider in your `$GOBIN` folder
 
 ```shell
 make install 
 ```
-will trigger the Golang build and install the provider in your `$GOBIN` folder
 
 ### Adding Dependencies
 
 This provider uses [Go modules](https://github.com/golang/go/wiki/Modules).
 Please see the Go documentation for the most up to date information about using Go modules.
 
-To add a new dependency `github.com/author/dependency` to your Terraform provider:
+To add a new dependency `github.com/author/dependency` to the Abion provider:
 
 ```shell
 go get github.com/author/dependency
@@ -47,18 +68,19 @@ Then commit the changes to `go.mod` and `go.sum`.
 
 ### Testing
 
-In order to test the Abion provider, run
+In order to test the Terraform Abion Provider, run to run the full suite of acceptance tests by executing:
 
 ```shell
 ABION_API_KEY=<api key> ABION_API_HOST=<host> make testacc
 ```
-to run the full suite of acceptance tests
+Configure the ABION_API_KEY and (optional) ABION_API_HOST environment variables. 
 
-It's important to note that acceptance tests (`make testacc`) will actually call the Abion API and update zone records. You need a valid API KEY, access to the existing zone and also, your IP address must be whitelisted by Abion to be able to access the Abion API
+**NOTE!**  
+It's important to understand that acceptance tests (`make testacc`) will actually call the Abion API and update zone records. You need a valid API KEY, access to the existing zone and also, your IP address must be whitelisted by Abion to be able to access the Abion API
 
 ### Generating documentation
 
-The Abion provider uses [terraform-plugin-docs](https://github.com/hashicorp/terraform-plugin-docs/)
+The Terraform Abion Provider uses [terraform-plugin-docs](https://github.com/hashicorp/terraform-plugin-docs/)
 to generate documentation and store it in the `docs/` directory.
 Once a release is cut, the Terraform Registry will download the documentation from `docs/`
 and associate it with the release version. Read more about how this works on the
@@ -76,7 +98,7 @@ make fmt
 make lint
 ````
 
-### Using a development build
+### Using a development build in Terraform
 
 If [running acceptance tests](#Testing) isn't enough, it's possible to set up a local terraform configuration
 to use a development builds of the provider. This can be achieved by leveraging the Terraform CLI
@@ -104,3 +126,10 @@ provider_installation {
   direct {}
 }
 ```
+
+## Releasing
+
+The release process is automated via GitHub Actions, and it's defined in the Workflow
+[release.yml](./.github/workflows/release.yml).
+
+Each release is cut by pushing a [semantically versioned](https://semver.org/) tag (e.g. `v.0.1.0`) to the main branch.
