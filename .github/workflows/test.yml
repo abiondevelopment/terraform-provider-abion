@@ -81,7 +81,7 @@ jobs:
         timeout-minutes: 20
   test_1_6:
     name: Terraform Provider Acceptance Tests v1.6.*
-    needs: test_5_0
+    needs: test_1_5
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
