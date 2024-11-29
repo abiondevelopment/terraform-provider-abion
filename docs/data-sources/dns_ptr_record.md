@@ -30,7 +30,7 @@ data "abion_dns_ptr_record" "example" {
   name = "10"
 }
 
-output "example_ip_addresses" {
+output "example_records" {
   value = data.abion_dns_ptr_record.example.records
 }
 ```
