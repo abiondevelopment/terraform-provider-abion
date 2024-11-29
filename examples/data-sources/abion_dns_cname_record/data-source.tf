@@ -15,6 +15,6 @@ data "abion_dns_cname_record" "example" {
   name = "@"
 }
 
-output "example_ip_addresses" {
+output "example_records" {
   value = data.abion_dns_cname_record.example.record
 }

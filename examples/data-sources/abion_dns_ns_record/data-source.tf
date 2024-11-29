@@ -15,6 +15,6 @@ data "abion_dns_ns_record" "example" {
   name = "www"
 }
 
-output "example_nameservers" {
+output "example_records" {
   value = data.abion_dns_ns_record.example.records
 }

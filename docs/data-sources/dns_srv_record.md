@@ -30,7 +30,7 @@ data "abion_dns_srv_record" "example" {
   name = "www"
 }
 
-output "example_ip_addresses" {
+output "example_records" {
   value = data.abion_dns_srv_record.example.records
 }
 ```
