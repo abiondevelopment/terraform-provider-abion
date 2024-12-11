@@ -8,6 +8,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"golang.org/x/net/html"
 	"io"
 	"net/http"
@@ -35,7 +36,7 @@ type ApiClient interface {
 }
 
 // NewAbionClient Creates a new Client.
-func NewAbionClient(host string, apiKey string) (*Client, error) {
+func NewAbionClient(host string, apiKey string, timeout int) (*Client, error) {
 	baseURL, err := url.Parse(host)
 
 	if err != nil {
@@ -45,7 +46,7 @@ func NewAbionClient(host string, apiKey string) (*Client, error) {
 	return &Client{
 		apiKey:     apiKey,
 		baseURL:    baseURL,
-		HTTPClient: &http.Client{Timeout: 10 * time.Second},
+		HTTPClient: &http.Client{Timeout: time.Duration(timeout) * time.Second},
 	}, nil
 }
 
@@ -69,6 +70,11 @@ func (c *Client) GetZone(ctx context.Context, name string) (*APIResponse[*Zone],
 
 // PatchZone Updates a zone by patching it according to JSON Merge Patch format (RFC 7396).
 func (c *Client) PatchZone(ctx context.Context, name string, patch ZoneRequest) (*APIResponse[*Zone], error) {
+
+	ctx = tflog.SetField(ctx, "key", c.apiKey)
+	ctx = tflog.SetField(ctx, "url", c.baseURL)
+	tflog.Debug(ctx, "Sending patch request")
+
 	endpoint := c.baseURL.JoinPath("v1", "zones", name)
 
 	req, err := newJSONRequest(ctx, http.MethodPatch, endpoint, patch)

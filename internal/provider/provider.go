@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"os"
+	"strconv"
 	abionclient "terraform-provider-abion/internal/client"
 )
 
@@ -31,8 +32,9 @@ type AbionDnsProvider struct {
 
 // AbionProviderModel describes the provider data model.
 type AbionProviderModel struct {
-	Host   types.String `tfsdk:"host"`
-	Apikey types.String `tfsdk:"apikey"`
+	Host    types.String `tfsdk:"host"`
+	Apikey  types.String `tfsdk:"apikey"`
+	Timeout types.Int32  `tfsdk:"timeout"`
 }
 
 // Metadata returns the provider type name.
@@ -61,6 +63,13 @@ func (p *AbionDnsProvider) Schema(ctx context.Context, req provider.SchemaReques
 				Optional:  true,
 				Sensitive: true,
 			},
+			"timeout": schema.Int32Attribute{
+				MarkdownDescription: "The Abion API timeout in seconds. If not set, defaults to `60`. " +
+					"This value can also be set using the `ABION_API_TIMEOUT` environment variable. " +
+					"The order of precedence: Terraform configuration value (highest priority) > " +
+					"environment variable > default value.",
+				Optional: true,
+			},
 		},
 	}
 }
@@ -82,7 +91,16 @@ func (p *AbionDnsProvider) Configure(ctx context.Context, req provider.Configure
 			path.Root("host"),
 			"Unknown Abion API Host",
 			"The provider cannot create the Abion API client as there is an unknown configuration value for the Abion API host. "+
-				"Either target apply the source of the value first, set the value statically in the configuration, or use the ABION_API_KEY environment variable.",
+				"Either target apply the source of the value first, set the value statically in the configuration, or use the ABION_API_HOST environment variable.",
+		)
+	}
+
+	if config.Timeout.IsUnknown() {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("timeout"),
+			"Unknown Abion API timeout",
+			"The provider cannot create the Abion API client as there is an unknown configuration value for the Abion API timeout. "+
+				"Either target apply the source of the value first, set the value statically in the configuration, or use the ABION_API_TIMEOUT environment variable.",
 		)
 	}
 
@@ -110,6 +128,29 @@ func (p *AbionDnsProvider) Configure(ctx context.Context, req provider.Configure
 		host = "https://api.abion.com"
 	}
 
+	// Environment variable ABION_API_TIMEOUT
+	timeoutEnv := os.Getenv("ABION_API_TIMEOUT")
+
+	var timeout int
+	if !config.Timeout.IsNull() {
+		// If Terraform configuration is set, use it
+		timeout = int(config.Timeout.ValueInt32())
+	} else if timeoutEnv != "" {
+		// If ABION_API_TIMEOUT environment variable is set, convert it
+		timeoutInt, err := strconv.Atoi(timeoutEnv)
+		if err != nil {
+			resp.Diagnostics.AddAttributeError(
+				path.Root("timeout"),
+				"Invalid ABION_API_TIMEOUT value in environment",
+				"Must be an integer.",
+			)
+		}
+		timeout = timeoutInt
+	} else {
+		// Use the default value
+		timeout = 60
+	}
+
 	apikey := os.Getenv("ABION_API_KEY")
 
 	if !config.Apikey.IsNull() {
@@ -132,12 +173,13 @@ func (p *AbionDnsProvider) Configure(ctx context.Context, req provider.Configure
 
 	ctx = tflog.SetField(ctx, "abion_host", host)
 	ctx = tflog.SetField(ctx, "abion_apikey", apikey)
+	ctx = tflog.SetField(ctx, "timeout", timeout)
 	ctx = tflog.MaskFieldValuesWithFieldKeys(ctx, "abion_apikey")
 
 	tflog.Debug(ctx, "Creating Abion client")
 
 	// Create a new Abion client using the configuration values
-	client, err := abionclient.NewAbionClient(host, apikey)
+	client, err := abionclient.NewAbionClient(host, apikey, timeout)
 
 	if err != nil {
 		resp.Diagnostics.AddError(

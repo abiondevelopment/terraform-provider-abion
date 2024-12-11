@@ -25,3 +25,4 @@ provider "abion" {
 
 - `apikey` (String, Sensitive) The Abion API key. Contact [Abion](https://abion.com) for help on how to create an account and an API key and whitelist IP addresses to be able to access the Abion API. This value can also be set using the `ABION_API_KEY` environment variable. The order of precedence: Terraform configuration value (highest priority) > environment variable (lowest priority).
 - `host` (String) The Abion API host URL. If not set, defaults to `https://api.abion.com`. This value can also be set using the `ABION_API_HOST` environment variable. The order of precedence: Terraform configuration value (highest priority) > environment variable > default value.
+- `timeout` (Number) The Abion API timeout in seconds. If not set, defaults to `60`. This value can also be set using the `ABION_API_TIMEOUT` environment variable. The order of precedence: Terraform configuration value (highest priority) > environment variable > default value.
