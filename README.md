@@ -30,7 +30,7 @@ must exist and the API Key/account need to have access to the zone.
 ## Using the provider
 
 Official documentation on how to use this provider can be found on the
-[Terraform Registry](https://registry.terraform.io/providers/abion/abion/latest/docs).
+[Terraform Registry](https://registry.terraform.io/providers/abiondevelopment/abion/latest/docs).
 
 ## Developing the Abion Provider
 
@@ -117,7 +117,7 @@ Example of a `.terraformrc` file:
 provider_installation {
 
   dev_overrides {
-      "abion/abion" = "<path_to_/go/bin>"
+      "abiondevelopment/abion" = "<path_to_/go/bin>"
   }
 
   # For all other providers, install them directly from their origin provider

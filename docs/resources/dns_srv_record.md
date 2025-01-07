@@ -16,7 +16,7 @@ Use this resource to create, update and delete DNS SRV records of a zone.
 terraform {
   required_providers {
     abion = {
-      source = "abion/abion"
+      source = "abiondevelopment/abion"
     }
   }
 }

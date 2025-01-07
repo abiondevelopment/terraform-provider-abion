@@ -16,7 +16,7 @@ Use this data source to get DNS SRV records of the zone.
 terraform {
   required_providers {
     abion = {
-      source = "abion/abion"
+      source = "abiondevelopment/abion"
     }
   }
 }
