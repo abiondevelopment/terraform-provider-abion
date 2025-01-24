@@ -19,6 +19,7 @@ must exist and the API Key/account need to have access to the zone.
 * The supported record types: 
   * `A`
   * `AAAA`
+  * `CAA`
   * `CNAME`
   * `MX`
   * `TXT`

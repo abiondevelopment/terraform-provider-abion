@@ -10,6 +10,7 @@ type RecordType string
 const (
 	RecordTypeA     RecordType = "A"
 	RecordTypeAAAA  RecordType = "AAAA"
+	RecordTypeCAA   RecordType = "CAA"
 	RecordTypeCName RecordType = "CNAME"
 	RecordTypeMX    RecordType = "MX"
 	RecordTypeTXT   RecordType = "TXT"

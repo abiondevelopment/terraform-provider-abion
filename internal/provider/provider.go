@@ -210,6 +210,7 @@ func (p *AbionDnsProvider) Resources(ctx context.Context) []func() resource.Reso
 		NewDnsMXRecordResource,
 		NewDnsSRVRecordResource,
 		NewDnsPTRRecordResource,
+		NewDnsCAARecordResource,
 	}
 }
 
@@ -224,6 +225,7 @@ func (p *AbionDnsProvider) DataSources(ctx context.Context) []func() datasource.
 		NewDnsMXRecordDataSource,
 		NewDnsSRVRecordDataSource,
 		NewDnsPTRRecordDataSource,
+		NewDnsCAARecordDataSource,
 	}
 }
 
