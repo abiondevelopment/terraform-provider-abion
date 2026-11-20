@@ -1,6 +1,6 @@
 module terraform-provider-abion
 
-go 1.22.7
+go 1.27
 
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.14.1
