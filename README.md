@@ -8,7 +8,7 @@ must exist and the API Key/account need to have access to the zone.
 ## Requirements
 
 * [Terraform](https://www.terraform.io/downloads)
-* [Go](https://go.dev/doc/install) (1.22)
+* [Go](https://go.dev/doc/install) (1.27 or later)
 * [GNU Make](https://www.gnu.org/software/make/)
 * [golangci-lint](https://golangci-lint.run/welcome/install#local-installation) (optional)
 
