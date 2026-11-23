@@ -61,6 +61,8 @@ Optional:
 
 Import is supported using the following syntax:
 
+The [`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import) can be used, for example:
+
 ```shell
 # DNS CNAME records can be imported by specifying the string identifier. The import ID should be in the format: "zone/name". The `@` character represents the root of the zone, E.g., "example.com/@"
 terraform import abion_dns_cname_record.example "example.com/www"
