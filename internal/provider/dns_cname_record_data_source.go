@@ -6,8 +6,8 @@ package provider
 import (
 	"context"
 	"fmt"
+	abionclient "github.com/abiondevelopment/abion-go/abion"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
-	abionclient "terraform-provider-abion/internal/client"
 	"terraform-provider-abion/internal/utils"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"

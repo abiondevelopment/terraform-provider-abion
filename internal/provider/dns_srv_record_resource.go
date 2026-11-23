@@ -6,11 +6,11 @@ package provider
 import (
 	"context"
 	"fmt"
+	abionclient "github.com/abiondevelopment/abion-go/abion"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
-	abionclient "terraform-provider-abion/internal/client"
 	"terraform-provider-abion/internal/utils"
 )
 
@@ -256,7 +256,7 @@ func (r *dnsSRVRecordResource) Delete(ctx context.Context, req resource.DeleteRe
 		return
 	}
 
-	patchRequest := abionclient.CreateRecordPatchRequest(state.Zone.ValueString(), state.Name.ValueString(), r.recordType, nil)
+	patchRequest := createRecordPatchRequest(state.Zone.ValueString(), state.Name.ValueString(), r.recordType, nil)
 
 	ctx = tflog.SetField(ctx, "zone", state.Zone.ValueString())
 	ctx = tflog.SetField(ctx, "name", state.Name.ValueString())
@@ -290,5 +290,5 @@ func (r *dnsSRVRecordResource) createSRVRecordCreateUpdateRequest(plan dnsSRVRec
 		data = append(data, record)
 	}
 
-	return abionclient.CreateRecordPatchRequest(plan.Zone.ValueString(), plan.Name.ValueString(), r.recordType, data)
+	return createRecordPatchRequest(plan.Zone.ValueString(), plan.Name.ValueString(), r.recordType, data)
 }
