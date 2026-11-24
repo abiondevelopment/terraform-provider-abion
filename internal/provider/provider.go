@@ -5,6 +5,7 @@ package provider
 
 import (
 	"context"
+	abionclient "github.com/abiondevelopment/abion-go/abion"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/function"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -15,7 +16,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"os"
 	"strconv"
-	abionclient "terraform-provider-abion/internal/client"
 )
 
 // Ensure AbionDnsProvider satisfies various provider interfaces.
