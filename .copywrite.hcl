@@ -17,5 +17,8 @@ project {
 
     # GoReleaser tooling configuration
     ".goreleaser.yml",
+
+    # GitHub release notes configuration
+    ".github/release.yml",
   ]
 }
