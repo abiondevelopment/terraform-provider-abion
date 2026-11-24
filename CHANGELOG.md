@@ -1,3 +1,5 @@
+Release notes for versions after v1.1.0 are published on the [GitHub releases page](https://github.com/abiondevelopment/terraform-provider-abion/releases).
+
 ## v1.1.0 (January 24, 2025)
 * Added support for CAA record types (Fixes #20)
 * Bump github.com/hashicorp/terraform-plugin-go from 0.25.0 to 0.26.0
